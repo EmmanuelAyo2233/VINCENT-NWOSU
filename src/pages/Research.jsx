@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { researchInterests } from '../data/mockData';
@@ -87,7 +87,7 @@ export default function Research() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="glass-panel rounded-3xl p-8 text-left shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between aspect-video md:aspect-[4/3] lg:aspect-video relative overflow-hidden border border-stone-200"
+                className="glass-panel rounded-3xl p-6 md:p-8 text-left shadow-sm hover:shadow-md transition-shadow group flex flex-col gap-4 relative overflow-hidden border border-stone-200"
               >
                 <div className="relative z-10 flex flex-col gap-4">
                   {/* Card Icon & Category */}
