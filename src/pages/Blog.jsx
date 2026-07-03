@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Calendar, Clock, ArrowRight } from 'lucide-react';
 import { blogPostsData } from '../data/mockData';
 
 export default function Blog() {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
@@ -133,13 +134,13 @@ export default function Blog() {
                     </div>
 
                     <div className="pt-2">
-                      <Link
-                        to={`/blog/${featuredPost.slug}`}
-                        className="inline-flex items-center gap-2 text-sm font-bold text-black border-b border-black hover:text-stone-750 hover:border-stone-750 group cursor-pointer pb-0.5"
+                      <button
+                        onClick={() => navigate(`/blog/${featuredPost.slug}`)}
+                        className="inline-flex items-center gap-2 text-sm font-bold text-black border-b border-black hover:text-stone-750 hover:border-stone-750 group cursor-pointer pb-0.5 bg-transparent border-none p-0 outline-none"
                       >
                         Read Essay
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </motion.div>
@@ -188,13 +189,13 @@ export default function Blog() {
                         </div>
 
                         <div>
-                          <Link
-                            to={`/blog/${post.slug}`}
-                            className="inline-flex items-center gap-2 text-xs font-bold text-black border-b border-black hover:text-stone-600 hover:border-stone-600 group cursor-pointer pb-0.5"
+                          <button
+                            onClick={() => navigate(`/blog/${post.slug}`)}
+                            className="inline-flex items-center gap-2 text-xs font-bold text-black border-b border-black hover:text-stone-600 hover:border-stone-600 group cursor-pointer pb-0.5 bg-transparent border-none p-0 outline-none"
                           >
                             Read Essay
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </motion.div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Component layout imports
@@ -22,7 +22,6 @@ import Contact from './pages/Contact';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
 
   return (
     <>
@@ -39,21 +38,19 @@ export default function App() {
 
           {/* Centralized Page Routing Views */}
           <main className="flex-grow">
-            <AnimatePresence mode="wait">
-              <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/experience" element={<Experience />} />
-                <Route path="/research" element={<Research />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:id" element={<ProjectDetails />} />
-                <Route path="/publications" element={<Publications />} />
-                <Route path="/cv" element={<CV />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/contact" element={<Contact />} />
-              </Routes>
-            </AnimatePresence>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/research" element={<Research />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:id" element={<ProjectDetails />} />
+              <Route path="/publications" element={<Publications />} />
+              <Route path="/cv" element={<CV />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
           </main>
 
           {/* Premium Footer */}

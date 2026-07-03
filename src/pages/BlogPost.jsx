@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Share2, Twitter, Linkedin, Copy, Check } from 'lucide-react';
 import { blogPostsData } from '../data/mockData';
 
 export default function BlogPost() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
 
   // Scroll to top on mount
@@ -90,10 +91,10 @@ export default function BlogPost() {
 
         {/* Banner Graphics */}
         <div
-          className="w-full aspect-[21/9] rounded-[2rem] shadow-md border border-stone-250/20 flex items-center justify-center mb-16 overflow-hidden"
+          className="relative w-full aspect-[21/9] rounded-[2rem] shadow-md border border-stone-250/20 flex items-center justify-center mb-16 overflow-hidden"
           style={{ background: post.image }}
         >
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
         </div>
 
         {/* Split Article stream */}

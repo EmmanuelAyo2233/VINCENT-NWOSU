@@ -33,12 +33,12 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 z-40 transition-all duration-500 flex justify-center ${
+        className={`fixed left-0 right-0 z-40 transition-all duration-500 flex justify-center pointer-events-none ${
           scrolled ? 'top-4 px-4' : 'top-0 px-0'
         }`}
       >
         <div
-          className={`w-full max-w-7xl flex items-center justify-between transition-all duration-500 px-6 md:px-8 py-3 ${
+          className={`w-full max-w-7xl flex items-center justify-between transition-all duration-500 px-6 md:px-8 py-3 pointer-events-auto ${
             scrolled
               ? 'glass-navbar rounded-full shadow-lg max-w-6xl'
               : 'bg-transparent py-5'
@@ -113,7 +113,7 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -10, pointerEvents: 'none' }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-30 bg-white flex flex-col justify-center px-8 md:px-16 lg:hidden"
           >

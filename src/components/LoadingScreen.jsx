@@ -26,7 +26,8 @@ export default function LoadingScreen({ onComplete }) {
     <motion.div
       className="fixed inset-0 bg-stone-950 flex flex-col items-center justify-center z-50 text-white"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, y: -20, transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+      exit={{ opacity: 0, y: -20, transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } }}
+      style={{ pointerEvents: 'none' }}
     >
       <div className="w-full max-w-xs flex flex-col items-center">
         {/* Animated Initials Logo */}
