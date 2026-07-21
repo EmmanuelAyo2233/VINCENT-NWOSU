@@ -5,14 +5,12 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Experience', path: '/experience' },
   { name: 'Research', path: '/research' },
-  { name: 'Projects', path: '/projects' },
   { name: 'Publications', path: '/publications' },
+  { name: 'Projects', path: '/projects' },
   { name: 'CV', path: '/cv' },
-  { name: 'Blog', path: '/blog' },
   { name: 'Contact', path: '/contact' },
+  { name: 'News', path: '/news' },
 ];
 
 export default function Navbar() {
