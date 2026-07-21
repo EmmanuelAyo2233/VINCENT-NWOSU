@@ -1,7 +1,44 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as Icons from 'lucide-react';
-import { researchInterests } from '../data/mockData';
+
+const researchInterests = [
+  {
+    id: 'tone-prosody',
+    category: 'Phonetics & Phonology',
+    title: 'Tone & Prosody',
+    description: 'I investigate the phonetic realization of tone and prosodic structure in Igbo and other Niger-Congo languages, with a focus on the phonetics–phonology interface. My work examines how tonal and prosodic patterns are encoded in the acoustic signal and how they interact with other levels of linguistic structure.',
+    iconName: 'Volume2'
+  },
+  {
+    id: 'acoustics-verbal-arts',
+    category: 'Phonetics & Phonology',
+    title: 'Acoustics of Verbal Arts',
+    description: "I study the acoustic properties of Igbo verbal arts — including storytelling, ritual chants (mbem), and children's songs — using laboratory phonology methods. This work brings experimental phonetics to bear on oral literary traditions, revealing how performers manipulate prosody, voice quality, and rhythm to create meaning.",
+    iconName: 'Mic'
+  },
+  {
+    id: 'co-speech-gestures',
+    category: 'Multimodal Communication',
+    title: 'Co-Speech Gestures',
+    description: 'I examine the temporal relationship between speech and gesture, particularly how prosodic and tonal structure predicts the timing of co-speech gestures in Igbo. This work contributes to our understanding of the multimodal nature of human communication and the grammatical basis of gestural timing.',
+    iconName: 'Move'
+  },
+  {
+    id: 'child-directed-speech',
+    category: 'Development',
+    title: 'Child-Directed Speech',
+    description: 'I investigate how tonal and prosodic properties of speech are adapted when Igbo speakers address young children, exploring the intersection of phonetics, language acquisition, and caregiver communication.',
+    iconName: 'Heart'
+  },
+  {
+    id: 'language-documentation',
+    category: 'Documentation',
+    title: 'Language Documentation',
+    description: 'I am committed to the documentation and typological study of endangered and understudied African languages, with active projects on Igbo and Ika, an endangered Igboid language of Nigeria.',
+    iconName: 'BookOpen'
+  }
+];
 
 // Helper to render icons dynamically
 const ResearchIcon = ({ name, className }) => {
@@ -26,24 +63,6 @@ export default function Research() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
-        {/* Page Header */}
-        <motion.div 
-          className="text-left mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-xs uppercase tracking-[0.25em] text-stone-500 font-semibold mb-2 block">
-            Academic Fields
-          </span>
-          <h1 className="text-4xl md:text-6xl font-heading font-black tracking-tight text-stone-900">
-            Research Interests
-          </h1>
-          <p className="text-stone-605 mt-3 text-base md:text-lg max-w-2xl leading-relaxed">
-            Investigating foundational questions in acoustic phonology, prosodic structures, child-directed speech, and multimodal language documentation.
-          </p>
-        </motion.div>
-
         {/* Filter Bar */}
         <motion.div 
           className="flex flex-wrap items-center gap-2 mb-12 border-b border-stone-200 pb-4"
@@ -73,7 +92,7 @@ export default function Research() {
           ))}
         </motion.div>
 
-        {/* Grid of Cards */}
+        {/* Grid of Cards (2 Columns on Desktop) */}
         <motion.div 
           layout
           className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
@@ -87,25 +106,24 @@ export default function Research() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="glass-panel rounded-3xl p-6 md:p-8 text-left shadow-sm hover:shadow-md transition-shadow group flex flex-col gap-4 relative overflow-hidden border border-stone-200"
+                className={`glass-panel rounded-3xl p-6 md:p-8 text-left shadow-sm hover:shadow-md transition-shadow group flex flex-col gap-4 relative overflow-hidden border border-stone-200 ${
+                  activeFilter === 'All' && interest.id === 'language-documentation' ? 'md:col-span-2' : ''
+                }`}
               >
                 <div className="relative z-10 flex flex-col gap-4">
-                  {/* Card Icon & Category */}
+                  {/* Card Icon */}
                   <div className="flex items-center justify-between">
                     <div className="w-12 h-12 rounded-2xl bg-stone-100 text-stone-900 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform border border-stone-200/50">
                       <ResearchIcon name={interest.iconName} className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-stone-400">
-                      {interest.category}
-                    </span>
                   </div>
 
                   {/* Title & Desc */}
                   <div>
-                    <h3 className="text-xl font-heading font-bold text-stone-900 mb-3 group-hover:text-stone-605 transition-colors">
+                    <h3 className="text-xl font-heading font-bold text-stone-900 mb-3 group-hover:text-stone-750 transition-colors">
                       {interest.title}
                     </h3>
-                    <p className="text-sm text-stone-600 leading-relaxed">
+                    <p className="text-sm md:text-base text-stone-600 leading-relaxed font-body">
                       {interest.description}
                     </p>
                   </div>

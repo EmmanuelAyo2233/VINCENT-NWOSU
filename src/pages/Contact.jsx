@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
 import { profileInfo } from '../data/mockData';
 
 export default function Contact() {
@@ -64,19 +64,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-xl bg-stone-100 text-stone-900 flex items-center justify-center border border-stone-200 shadow-inner group-hover:scale-105 transition-transform">
-                  <Phone className="w-4.5 h-4.5" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] uppercase font-bold tracking-widest text-stone-400">
-                    Direct Call
-                  </h4>
-                  <a href={`tel:${profileInfo.phone}`} className="text-sm font-semibold hover:text-stone-600 transition-colors">
-                    {profileInfo.phone}
-                  </a>
-                </div>
-              </div>
+
 
               <div className="flex items-center gap-4 group">
                 <div className="w-11 h-11 rounded-xl bg-stone-100 text-stone-900 flex items-center justify-center border border-stone-200 shadow-inner group-hover:scale-105 transition-transform">

@@ -23,9 +23,24 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-heading font-black tracking-tight mb-4 text-black leading-none">
             {profileInfo.name}
           </h1>
-          <p className="text-base font-body text-stone-600 mb-8 leading-relaxed max-w-xl">
+          <p className="text-base font-body text-stone-600 mb-6 leading-relaxed max-w-xl">
             {profileInfo.bio}
           </p>
+
+          {/* Institutional Coordinates */}
+          <div className="mb-8 p-5 rounded-2xl border border-stone-200 bg-stone-50/60 max-w-xl text-sm text-stone-600 space-y-2.5 font-body shadow-xs">
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-stone-500" />
+              <a href="mailto:vincent.nwosu@ucalgary.ca" className="hover:text-stone-950 font-semibold transition-colors">
+                vincent.nwosu@ucalgary.ca
+              </a>
+            </div>
+            <div className="pt-2.5 border-t border-stone-200/60 text-xs md:text-sm space-y-0.5">
+              <p className="font-semibold text-stone-900">School of Languages, Linguistics, Literatures and Cultures</p>
+              <p className="text-stone-700">University of Calgary</p>
+              <p className="text-stone-400 font-mono text-[11px]">2500 University Drive NW, Calgary, AB T2N 1N4</p>
+            </div>
+          </div>
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-4 mb-10">
