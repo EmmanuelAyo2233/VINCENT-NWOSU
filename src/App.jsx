@@ -21,23 +21,13 @@ import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      {/* Global Loading Screen */}
-      <AnimatePresence>
-        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
+    <div className="page-bg flex flex-col min-h-screen">
+      {/* Sticky/Floating Navigation */}
+      <Navbar />
 
-      {/* Main Website Wrapper */}
-      {!loading && (
-        <div className="page-bg flex flex-col min-h-screen">
-          {/* Sticky/Floating Navigation */}
-          <Navbar />
-
-          {/* Centralized Page Routing Views */}
-          <main className="flex-grow">
+      {/* Centralized Page Routing Views */}
+      <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -58,7 +48,5 @@ export default function App() {
           {/* Premium Footer */}
           <Footer />
         </div>
-      )}
-    </>
   );
 }
