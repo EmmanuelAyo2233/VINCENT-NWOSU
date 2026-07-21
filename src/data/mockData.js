@@ -3,13 +3,11 @@
 export const profileInfo = {
   name: "Vincent Nwosu",
   title: "Linguist & Phonologist",
-  bio: "Vincent Nwosu is a PhD candidate in Linguistics at the University of Calgary, supervised by Darin Flynn and co-supervised by Kathryn Franich (Harvard University). He is broadly interested in phonological theory and laboratory phonetics, with a current focus on the phonetics–phonology interface as it relates to tone and the typology of prosodic systems. His research examines tone, prosody, and speech acoustics across typologically diverse languages, including Igbo, and more recently English. He has conducted extensive fieldwork in Nigeria and in Cameroon, where he ran experiments with speakers of Kejom and Medʉmba. His work also extends to child-directed speech and the acoustic study of how caregivers adapt their speech to young children. Alongside his experimental work, Vincent is committed to the documentation and typology of endangered and understudied African languages, with an ongoing project on Ika, an endangered Igboid language of Nigeria.",
+  bio: "I am a PhD candidate in the Department of Linguistics at the University of Calgary, supervised by Darin Flynn and co-supervised by Kathryn Franich. I am also an affiliate member of the Harvard Phonetics Lab.\n\nMy dissertation, The LabPhon Study of the Igbo Verbal Arts, examines the prosodic and phonetic structure of Igbo storytelling, ritual chants, and children’s songs. My broader research interests include tonal phonology, acoustic phonetics, speech–gesture timing, child-directed speech, and the documentation of endangered languages.",
   email: "vincent.nwosu@ucalgary.ca",
-  phone: "+1 (647) 719-5367",
   location: "Calgary, AB, Canada",
   socials: {
     linkedin: "https://linkedin.com",
-    github: "https://github.com",
     twitter: "https://twitter.com",
     instagram: "https://instagram.com"
   }

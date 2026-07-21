@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Linkedin, Twitter, Github, Mail, ArrowDown } from 'lucide-react';
+import { ArrowRight, Linkedin, Twitter, Mail, ArrowDown } from 'lucide-react';
 import { profileInfo } from '../data/mockData';
 
 export default function Home() {
@@ -12,17 +12,14 @@ export default function Home() {
 
       {/* Hero Section Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full flex-grow flex flex-col lg:flex-row items-center justify-between gap-12 py-24 lg:py-32 pt-32">
-        
+
         {/* ===== LEFT SIDE INFO ===== */}
-        <motion.div 
+        <motion.div
           className="flex-1 text-left"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <span className="text-xs uppercase tracking-[0.25em] text-stone-500 font-semibold mb-4 block">
-            Linguistics & Phonology Researcher
-          </span>
           <h1 className="text-5xl md:text-7xl font-heading font-black tracking-tight mb-4 text-black leading-none">
             {profileInfo.name}
           </h1>
@@ -32,13 +29,6 @@ export default function Home() {
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-4 mb-10">
-            <Link
-              to="/publications"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-sm font-semibold transition-all shadow-sm"
-            >
-              Publications & Papers
-              <ArrowRight className="w-4 h-4" />
-            </Link>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-stone-300 bg-transparent text-stone-900 hover:bg-stone-100 text-sm font-semibold transition-all"
@@ -53,11 +43,6 @@ export default function Home() {
               className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
               aria-label="LinkedIn">
               <Linkedin className="w-5 h-5" />
-            </a>
-            <a href={profileInfo.socials.github} target="_blank" rel="noopener noreferrer"
-              className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
-              aria-label="GitHub">
-              <Github className="w-5 h-5" />
             </a>
             <a href={profileInfo.socials.twitter} target="_blank" rel="noopener noreferrer"
               className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
@@ -88,14 +73,6 @@ export default function Home() {
             />
           </div>
         </motion.div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="relative z-10 w-full flex justify-center pb-8">
-        <div className="flex flex-col items-center gap-2 text-stone-400">
-          <span className="text-[10px] uppercase tracking-widest font-semibold">Scroll to Explore</span>
-          <ArrowDown className="w-4 h-4 animate-bounce" />
-        </div>
       </div>
     </div>
   );
