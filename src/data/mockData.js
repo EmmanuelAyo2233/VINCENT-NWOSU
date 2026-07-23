@@ -87,7 +87,7 @@ export const projectsData = [
     title: "Igbo Language & Verbal Arts Documentation",
     tagline: "Archiving 57+ hours of high-fidelity audiovisual storytelling and chants.",
     description: "This project aims to document endangered oral traditions, mbem chants, folktales, and child-directed speech across various Igbo-speaking regions in Nigeria. The resulting audiovisual corpus serves both language preservation efforts and research on narrative rhythmic and acoustic patterns.",
-    image: "url('/project-igbo-doc.png') center/cover no-repeat",
+    image: "url('/igbo img.jpeg') center/cover no-repeat",
     tech: ["Praat", "ELAN", "Fieldwork", "Audio Engineering", "Linguistic Archiving"],
     results: "Collected and annotated over 57 hours of audiovisual recordings with bilingual transcripts.",
     challenge: "Accessing remote regional communities and ensuring audio fidelity during spontaneous storytelling performances, particularly preserving subtle tone modulations and gestures in local performance contexts.",
@@ -95,8 +95,8 @@ export const projectsData = [
     wireframes: "",
     designProcess: "Annotating tone and gesture timing alignment using specialized software packages like ELAN to create microsecond-level synchronization plots.",
     gallery: [
-      "url('/project-igbo-doc.png') center/cover no-repeat",
-      "url('/project-cameroon-timing.png') center/cover no-repeat"
+      "url('/igbo img.jpeg') center/cover no-repeat",
+      "url('/cameroon img.jpeg') center/cover no-repeat"
     ],
     testimonial: {
       quote: "Vincent's extensive documentation work on Igbo verbal arts captures phonetic variations and oral traditions that might otherwise be lost.",
@@ -108,7 +108,7 @@ export const projectsData = [
     title: "Cameroon Multimodal Speech Timing Study",
     tagline: "Analyzing the synchronization of speech prominence and physical co-speech gestures.",
     description: "Investigated how acoustic pitch cues, syllable prominence, and co-speech gestures align in Cameroon languages including Kejom and Medʉmba. This study challenges current theories of timing by showing dialect-specific gesture-speech coordination rules.",
-    image: "url('/project-cameroon-timing.png') center/cover no-repeat",
+    image: "url('/cameroon img.jpeg') center/cover no-repeat",
     tech: ["Praat", "ELAN", "Acoustic Phonetics", "Motion Tracking", "Statistical Analysis"],
     results: "Ran controlled experiments with 65 research subjects across Yaoundé and Bamileke, Cameroon.",
     challenge: "Isolating precise physical hand/body movement offsets from high-speed videography and matching them precisely to micro-acoustic features in raw field recordings.",
@@ -116,7 +116,7 @@ export const projectsData = [
     wireframes: "",
     designProcess: "Statistical modeling using R to map predicted alignments of gestures with high-pitch pitch target regions.",
     gallery: [
-      "url('/project-cameroon-timing.png') center/cover no-repeat",
+      "url('/cameroon img.jpeg') center/cover no-repeat",
       "url('/project-ika-doc.png') center/cover no-repeat"
     ],
     testimonial: {
