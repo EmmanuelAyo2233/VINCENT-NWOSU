@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Linkedin, Github, Mail, ArrowDown } from 'lucide-react';
+import { ArrowRight, Linkedin, Mail, ArrowDown } from 'lucide-react';
 import { profileInfo } from '../data/mockData';
 
 const XIcon = ({ className = "w-5 h-5" }) => (
@@ -65,20 +65,10 @@ export default function Home() {
               aria-label="LinkedIn">
               <Linkedin className="w-5 h-5" />
             </a>
-            <a href={profileInfo.socials.github} target="_blank" rel="noopener noreferrer"
-              className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
-              aria-label="GitHub">
-              <Github className="w-5 h-5" />
-            </a>
             <a href={profileInfo.socials.twitter} target="_blank" rel="noopener noreferrer"
               className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
               aria-label="X (formerly Twitter)">
               <XIcon className="w-5 h-5" />
-            </a>
-            <a href={`mailto:${profileInfo.email}`}
-              className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
-              aria-label="Email">
-              <Mail className="w-5 h-5" />
             </a>
           </div>
         </motion.div>

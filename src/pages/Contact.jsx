@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, MapPin, Send, CheckCircle, ArrowRight, Github, Linkedin } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, ArrowRight, Linkedin } from 'lucide-react';
 import { profileInfo } from '../data/mockData';
 
 const XIcon = ({ className = "w-4.5 h-4.5" }) => (
@@ -100,14 +100,6 @@ export default function Contact() {
                   className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
                 >
                   <Linkedin className="w-4.5 h-4.5" />
-                </a>
-                <a
-                  href={profileInfo.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
-                >
-                  <Github className="w-4.5 h-4.5" />
                 </a>
                 <a
                   href={profileInfo.socials.twitter}
