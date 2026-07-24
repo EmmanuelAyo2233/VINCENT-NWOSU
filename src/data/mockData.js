@@ -7,9 +7,9 @@ export const profileInfo = {
   email: "vincent.nwosu@ucalgary.ca",
   location: "Calgary, AB, Canada",
   socials: {
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
-    instagram: "https://instagram.com"
+    linkedin: "https://www.linkedin.com/in/vincentnwosu?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+    twitter: "https://x.com/nwosuvincent?s=11",
+    github: "https://github.com/vincentnwosu"
   }
 };
 

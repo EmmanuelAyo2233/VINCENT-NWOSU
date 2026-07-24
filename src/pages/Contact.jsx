@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, MapPin, Send, CheckCircle, ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, ArrowRight, Github, Linkedin } from 'lucide-react';
 import { profileInfo } from '../data/mockData';
+
+const XIcon = ({ className = "w-4.5 h-4.5" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -108,8 +114,9 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
+                  aria-label="X (formerly Twitter)"
                 >
-                  <Twitter className="w-4.5 h-4.5" />
+                  <XIcon className="w-4.5 h-4.5" />
                 </a>
               </div>
             </div>

@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Linkedin, Twitter, Mail, ArrowDown } from 'lucide-react';
+import { ArrowRight, Linkedin, Github, Mail, ArrowDown } from 'lucide-react';
 import { profileInfo } from '../data/mockData';
+
+const XIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 export default function Home() {
   return (
@@ -59,10 +65,15 @@ export default function Home() {
               aria-label="LinkedIn">
               <Linkedin className="w-5 h-5" />
             </a>
+            <a href={profileInfo.socials.github} target="_blank" rel="noopener noreferrer"
+              className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
+              aria-label="GitHub">
+              <Github className="w-5 h-5" />
+            </a>
             <a href={profileInfo.socials.twitter} target="_blank" rel="noopener noreferrer"
               className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
-              aria-label="Twitter">
-              <Twitter className="w-5 h-5" />
+              aria-label="X (formerly Twitter)">
+              <XIcon className="w-5 h-5" />
             </a>
             <a href={`mailto:${profileInfo.email}`}
               className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
