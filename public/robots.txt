@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://vincentnwosu.com
+
+# Sitemaps
+Sitemap: https://vincentnwosu.com/sitemap.xml
