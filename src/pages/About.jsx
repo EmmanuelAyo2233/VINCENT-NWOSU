@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, GraduationCap, Award, Database, Volume2, PenTool } from 'lucide-react';
-import { profileInfo, aboutTimeline } from '../data/mockData';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 export default function About() {
+  const { profile, aboutTimeline } = usePortfolioData();
+
   return (
     <div className="page-bg relative min-h-screen pt-32 pb-24 overflow-hidden bg-grid-pattern">
       {/* Background radial lights */}
@@ -37,13 +39,13 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.1 }}
           >
             <h3 className="text-2xl font-heading font-bold text-black leading-snug">
-              Investigating the structural properties of language through acoustics, phonetics, and multimodal gestures.
+              {profile.aboutHeadline || 'Investigating the structural properties of language through acoustics, phonetics, and multimodal gestures.'}
             </h3>
             <p className="text-stone-600 leading-relaxed text-base">
-              My academic research centers on phonological and phonetic analysis of Niger-Congo languages, with a particular focus on the Igbo language. I study how speech timing interacts with co-speech gestures, child-directed speech, and tone-tune correspondence in liturgical and storytelling contexts.
+              {profile.aboutNarrative1 || 'My academic research centers on phonological and phonetic analysis of Niger-Congo languages, with a particular focus on the Igbo language. I study how speech timing interacts with co-speech gestures, child-directed speech, and tone-tune correspondence in liturgical and storytelling contexts.'}
             </p>
             <p className="text-stone-600 leading-relaxed text-base">
-              I hold M.A. degrees in Linguistics and Cognitive Science from the University of Delaware and English Language/Philosophy from Ahmadu Bello University. I am currently completing my doctoral research at the University of Calgary, and work to document and preserve endangered oral narratives.
+              {profile.aboutNarrative2 || 'I hold M.A. degrees in Linguistics and Cognitive Science from the University of Delaware and English Language/Philosophy from Ahmadu Bello University. I am currently completing my doctoral research at the University of Calgary, and work to document and preserve endangered oral narratives.'}
             </p>
             
             {/* Core Competencies List */}
@@ -119,7 +121,7 @@ export default function About() {
           <div className="relative pl-6 sm:pl-8 border-l border-stone-200 space-y-12">
             {aboutTimeline.map((item, index) => (
               <motion.div 
-                key={index}
+                key={item.id || index}
                 className="relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

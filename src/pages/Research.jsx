@@ -1,44 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as Icons from 'lucide-react';
-
-const researchInterests = [
-  {
-    id: 'tone-prosody',
-    category: 'Phonetics & Phonology',
-    title: 'Tone & Prosody',
-    description: 'I investigate the phonetic realization of tone and prosodic structure in Igbo and other Niger-Congo languages, with a focus on the phonetics–phonology interface. My work examines how tonal and prosodic patterns are encoded in the acoustic signal and how they interact with other levels of linguistic structure.',
-    iconName: 'Volume2'
-  },
-  {
-    id: 'acoustics-verbal-arts',
-    category: 'Phonetics & Phonology',
-    title: 'Acoustics of Verbal Arts',
-    description: "I study the acoustic properties of Igbo verbal arts — including storytelling, ritual chants (mbem), and children's songs — using laboratory phonology methods. This work brings experimental phonetics to bear on oral literary traditions, revealing how performers manipulate prosody, voice quality, and rhythm to create meaning.",
-    iconName: 'Mic'
-  },
-  {
-    id: 'co-speech-gestures',
-    category: 'Multimodal Communication',
-    title: 'Co-Speech Gestures',
-    description: 'I examine the temporal relationship between speech and gesture, particularly how prosodic and tonal structure predicts the timing of co-speech gestures in Igbo. This work contributes to our understanding of the multimodal nature of human communication and the grammatical basis of gestural timing.',
-    iconName: 'Move'
-  },
-  {
-    id: 'child-directed-speech',
-    category: 'Development',
-    title: 'Child-Directed Speech',
-    description: 'I investigate how tonal and prosodic properties of speech are adapted when Igbo speakers address young children, exploring the intersection of phonetics, language acquisition, and caregiver communication.',
-    iconName: 'Heart'
-  },
-  {
-    id: 'language-documentation',
-    category: 'Documentation',
-    title: 'Language Documentation',
-    description: 'I am committed to the documentation and typological study of endangered and understudied African languages, with active projects on Igbo and Ika, an endangered Igboid language of Nigeria.',
-    iconName: 'BookOpen'
-  }
-];
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 // Helper to render icons dynamically
 const ResearchIcon = ({ name, className }) => {
@@ -47,6 +10,7 @@ const ResearchIcon = ({ name, className }) => {
 };
 
 export default function Research() {
+  const { researchInterests } = usePortfolioData();
   const [activeFilter, setActiveFilter] = useState('All');
 
   // Extract unique categories

@@ -1,9 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Building, Calendar } from 'lucide-react';
-import { experienceData } from '../data/mockData';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 export default function Experience() {
+  const { experiences } = usePortfolioData();
+
   return (
     <div className="page-bg relative min-h-screen pt-32 pb-24 overflow-hidden bg-dot-pattern">
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-stone-550/5 rounded-full blur-3xl pointer-events-none" />
@@ -30,9 +32,9 @@ export default function Experience() {
 
         {/* Vertical Timeline Lists */}
         <div className="relative pl-6 md:pl-8 border-l border-stone-200 space-y-12">
-          {experienceData.map((exp, idx) => (
+          {experiences.map((exp, idx) => (
             <motion.div
-              key={idx}
+              key={exp.id || idx}
               className="relative"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -69,21 +71,23 @@ export default function Experience() {
                 </p>
 
                 {/* Skills tags inside Card */}
-                <div className="border-t border-stone-200 pt-4">
-                  <h4 className="text-[10px] uppercase font-bold tracking-wider text-stone-450 mb-2">
-                    Key competencies applied
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2.5 py-1 rounded-md text-[10px] font-mono bg-stone-100 text-stone-600 border border-stone-200"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                {exp.skills && exp.skills.length > 0 && (
+                  <div className="border-t border-stone-200 pt-4">
+                    <h4 className="text-[10px] uppercase font-bold tracking-wider text-stone-450 mb-2">
+                      Key competencies applied
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {exp.skills.map((skill, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="px-2.5 py-1 rounded-md text-[10px] font-mono bg-stone-100 text-stone-600 border border-stone-200"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
           ))}

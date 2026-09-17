@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Calendar, Clock, ArrowRight } from 'lucide-react';
-import { blogPostsData } from '../data/mockData';
+import { usePortfolioData } from '../context/PortfolioDataContext';
+import { getBackgroundImageStyle } from '../lib/imageUtils';
 
 export default function Blog() {
   const navigate = useNavigate();
+  const { blogPosts } = usePortfolioData();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
   // Extract unique categories
-  const categories = ['All', ...new Set(blogPostsData.map(post => post.category))];
+  const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
 
   // Filtering
-  const filteredPosts = blogPostsData.filter((post) => {
+  const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           post.content.toLowerCase().includes(searchQuery.toLowerCase());
@@ -22,18 +24,12 @@ export default function Blog() {
     return matchesSearch && matchesCategory;
   });
 
-  // Pick first article as featured (if matches category and query, otherwise first matching is featured)
-  const featuredPost = filteredPosts.length > 0 ? filteredPosts[0] : null;
-  const recentPosts = filteredPosts.slice(1);
-
   return (
     <div className="page-bg relative min-h-screen pt-32 pb-24 overflow-hidden bg-dot-pattern">
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-stone-550/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
-
-
         {/* Filter controls */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 border-b border-stone-200 pb-6">
           {/* Categories Tab list */}
@@ -73,14 +69,14 @@ export default function Blog() {
               {filteredPosts.map((post) => (
                 <motion.div
                   layout
-                  key={post.id}
+                  key={post.id || post.slug}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="glass-panel rounded-[2rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row text-left group border border-stone-200"
                 >
                   <div
                     className="flex-grow lg:w-1/2 min-h-[250px] lg:min-h-[320px] flex items-center justify-center relative cursor-pointer"
-                    style={{ background: post.image }}
+                    style={getBackgroundImageStyle(post.image)}
                     onClick={() => navigate(`/blog/${post.slug}`)}
                   >
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />

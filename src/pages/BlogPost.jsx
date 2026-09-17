@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, Share2, Twitter, Linkedin, Copy, Check } from 'lucide-react';
-import { blogPostsData } from '../data/mockData';
+import { ArrowLeft, Calendar, Clock, Twitter, Linkedin, Copy, Check } from 'lucide-react';
+import { usePortfolioData } from '../context/PortfolioDataContext';
+import { getBackgroundImageStyle } from '../lib/imageUtils';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const navigate = useNavigate();
+  const { blogPosts } = usePortfolioData();
   const [copied, setCopied] = useState(false);
 
   // Scroll to top on mount
@@ -22,12 +23,12 @@ export default function BlogPost() {
     restDelta: 0.001
   });
 
-  const post = blogPostsData.find((p) => p.slug === slug);
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center pt-20 px-6">
-        <h2 className="text-2xl font-heading font-bold mb-4 font-heading">Essay Not Found</h2>
+        <h2 className="text-2xl font-heading font-bold mb-4">Essay Not Found</h2>
         <p className="text-stone-500 mb-8">The requested article could not be retrieved from our repository.</p>
         <Link to="/blog" className="px-6 py-3 rounded-full bg-stone-900 text-white font-semibold">
           Back to Blog
@@ -37,7 +38,7 @@ export default function BlogPost() {
   }
 
   // Related posts (excluding current)
-  const relatedPosts = blogPostsData.filter((p) => p.slug !== slug).slice(0, 2);
+  const relatedPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 2);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -92,7 +93,7 @@ export default function BlogPost() {
         {/* Banner Graphics */}
         <div
           className="relative w-full aspect-[21/9] rounded-[2rem] shadow-md border border-stone-250/20 flex items-center justify-center mb-16 overflow-hidden"
-          style={{ background: post.image }}
+          style={getBackgroundImageStyle(post.image)}
         >
           <div className="absolute inset-0 bg-black/10 pointer-events-none" />
         </div>
@@ -138,7 +139,7 @@ export default function BlogPost() {
               </div>
 
               {/* Table of Contents */}
-              {post.toc && (
+              {post.toc && post.toc.length > 0 && (
                 <div>
                   <h4 className="text-[10px] uppercase font-bold tracking-widest text-stone-400 mb-3.5">
                     Structure
@@ -237,8 +238,6 @@ export default function BlogPost() {
               })}
             </article>
 
-
-
             {/* Related Articles Footer */}
             {relatedPosts.length > 0 && (
               <div className="border-t border-stone-200 mt-16 pt-12">
@@ -248,7 +247,7 @@ export default function BlogPost() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {relatedPosts.map((relPost) => (
                     <Link
-                      key={relPost.id}
+                      key={relPost.id || relPost.slug}
                       to={`/blog/${relPost.slug}`}
                       className="glass-panel rounded-2xl p-6 text-left hover:-translate-y-1 transition-all hover:shadow-md block group cursor-pointer"
                     >
@@ -271,4 +270,3 @@ export default function BlogPost() {
     </div>
   );
 }
-

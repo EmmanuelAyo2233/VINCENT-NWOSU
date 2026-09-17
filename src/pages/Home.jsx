@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Linkedin, Mail, ArrowDown } from 'lucide-react';
-import { profileInfo } from '../data/mockData';
+import { Linkedin, Mail } from 'lucide-react';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 const XIcon = ({ className = "w-5 h-5" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -11,6 +11,8 @@ const XIcon = ({ className = "w-5 h-5" }) => (
 );
 
 export default function Home() {
+  const { profile } = usePortfolioData();
+
   return (
     <div className="relative min-h-screen flex flex-col justify-between overflow-hidden page-bg">
       {/* Background Subtle Textures */}
@@ -27,24 +29,24 @@ export default function Home() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <h1 className="text-5xl md:text-7xl font-heading font-black tracking-tight mb-4 text-black leading-none">
-            {profileInfo.name}
+            {profile.name}
           </h1>
           <p className="text-base font-body text-stone-600 mb-6 leading-relaxed max-w-xl">
-            {profileInfo.bio}
+            {profile.bio}
           </p>
 
           {/* Institutional Coordinates */}
           <div className="mb-8 p-5 rounded-2xl border border-stone-200 bg-stone-50/60 max-w-xl text-sm text-stone-600 space-y-2.5 font-body shadow-xs">
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-stone-500" />
-              <a href="mailto:vincent.nwosu@ucalgary.ca" className="hover:text-stone-950 font-semibold transition-colors">
-                vincent.nwosu@ucalgary.ca
+              <a href={`mailto:${profile.email}`} className="hover:text-stone-950 font-semibold transition-colors">
+                {profile.email}
               </a>
             </div>
             <div className="pt-2.5 border-t border-stone-200/60 text-xs md:text-sm space-y-0.5">
-              <p className="font-semibold text-stone-900">School of Languages, Linguistics, Literatures and Cultures</p>
-              <p className="text-stone-700">University of Calgary</p>
-              <p className="text-stone-400 font-mono text-[11px]">2500 University Drive NW, Calgary, AB T2N 1N4</p>
+              <p className="font-semibold text-stone-900">{profile.department || 'School of Languages, Linguistics, Literatures and Cultures'}</p>
+              <p className="text-stone-700">{profile.institution || 'University of Calgary'}</p>
+              <p className="text-stone-400 font-mono text-[11px]">{profile.address || '2500 University Drive NW, Calgary, AB T2N 1N4'}</p>
             </div>
           </div>
 
@@ -60,16 +62,20 @@ export default function Home() {
 
           {/* Social Icons Row */}
           <div className="flex items-center gap-4 text-stone-600">
-            <a href={profileInfo.socials.linkedin} target="_blank" rel="noopener noreferrer"
-              className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
-              aria-label="LinkedIn">
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a href={profileInfo.socials.twitter} target="_blank" rel="noopener noreferrer"
-              className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
-              aria-label="X (formerly Twitter)">
-              <XIcon className="w-5 h-5" />
-            </a>
+            {profile.socials?.linkedin && (
+              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer"
+                className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
+                aria-label="LinkedIn">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            )}
+            {profile.socials?.twitter && (
+              <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer"
+                className="hover:text-stone-950 transition-colors p-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50"
+                aria-label="X (formerly Twitter)">
+                <XIcon className="w-5 h-5" />
+              </a>
+            )}
           </div>
         </motion.div>
 
@@ -83,8 +89,8 @@ export default function Home() {
           {/* Round Profile Picture Container */}
           <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-stone-200 shadow-xl bg-stone-100">
             <img
-              src="/vin-photo.jpg"
-              alt="Vincent Nwosu"
+              src={profile.avatarUrl || '/vin-photo.jpg'}
+              alt={profile.name}
               className="w-full h-full object-cover object-top"
             />
           </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, MapPin, Send, CheckCircle, ArrowRight, Linkedin } from 'lucide-react';
-import { profileInfo } from '../data/mockData';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 const XIcon = ({ className = "w-4.5 h-4.5" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -10,6 +10,7 @@ const XIcon = ({ className = "w-4.5 h-4.5" }) => (
 );
 
 export default function Contact() {
+  const { profile } = usePortfolioData();
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -64,13 +65,11 @@ export default function Contact() {
                   <h4 className="text-[10px] uppercase font-bold tracking-widest text-stone-400">
                     Direct Email
                   </h4>
-                  <a href={`mailto:${profileInfo.email}`} className="text-sm font-semibold hover:text-stone-600 transition-colors">
-                    {profileInfo.email}
+                  <a href={`mailto:${profile.email}`} className="text-sm font-semibold hover:text-stone-600 transition-colors">
+                    {profile.email}
                   </a>
                 </div>
               </div>
-
-
 
               <div className="flex items-center gap-4 group">
                 <div className="w-11 h-11 rounded-xl bg-stone-100 text-stone-900 flex items-center justify-center border border-stone-200 shadow-inner group-hover:scale-105 transition-transform">
@@ -81,7 +80,7 @@ export default function Contact() {
                     Linguistics Department
                   </h4>
                   <span className="text-sm font-semibold text-stone-850">
-                    {profileInfo.location}
+                    {profile.location}
                   </span>
                 </div>
               </div>
@@ -93,23 +92,28 @@ export default function Contact() {
                 Social Networks
               </h4>
               <div className="flex items-center gap-3">
-                <a
-                  href={profileInfo.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
-                >
-                  <Linkedin className="w-4.5 h-4.5" />
-                </a>
-                <a
-                  href={profileInfo.socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
-                  aria-label="X (formerly Twitter)"
-                >
-                  <XIcon className="w-4.5 h-4.5" />
-                </a>
+                {profile.socials?.linkedin && (
+                  <a
+                    href={profile.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-4.5 h-4.5" />
+                  </a>
+                )}
+                {profile.socials?.twitter && (
+                  <a
+                    href={profile.socials.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full border border-stone-300 bg-white hover:bg-stone-100 transition-colors text-stone-600"
+                    aria-label="X (formerly Twitter)"
+                  >
+                    <XIcon className="w-4.5 h-4.5" />
+                  </a>
+                )}
               </div>
             </div>
           </div>

@@ -1,8 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, FileText } from 'lucide-react';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 export default function CV() {
+  const { profile } = usePortfolioData();
+  const cvUrl = profile.cvUrl || '/Vincent_Nwosu_CV.pdf';
+
   return (
     <div className="page-bg relative min-h-screen pt-32 pb-24 overflow-hidden bg-grid-pattern flex flex-col justify-center items-center">
       {/* Soft background glow */}
@@ -45,8 +49,10 @@ export default function CV() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <a
-            href="/Vincent_Nwosu_CV.pdf"
+            href={cvUrl}
             download="Vincent_Nwosu_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-stone-900 text-stone-50 hover:bg-stone-800 text-base font-semibold transition-all hover:-translate-y-[2px] shadow-lg hover:shadow-xl cursor-pointer"
           >
             <Download className="w-5 h-5" />

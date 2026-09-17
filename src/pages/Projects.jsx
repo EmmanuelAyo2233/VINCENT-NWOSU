@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Volume2, Database, BookOpen } from 'lucide-react';
-import { projectsData } from '../data/mockData';
+import { usePortfolioData } from '../context/PortfolioDataContext';
+import { getBackgroundImageStyle } from '../lib/imageUtils';
 
 // Dynamic background icons based on project index
 const ProjectIcon = ({ idx, className }) => {
@@ -11,6 +13,9 @@ const ProjectIcon = ({ idx, className }) => {
 };
 
 export default function Projects() {
+  const navigate = useNavigate();
+  const { projects } = usePortfolioData();
+
   return (
     <div className="page-bg relative min-h-screen pt-32 pb-24 overflow-hidden bg-grid-pattern">
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-stone-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -19,11 +24,10 @@ export default function Projects() {
         
         {/* Alternating Projects List */}
         <div className="space-y-20 md:space-y-24">
-          {projectsData.map((project, idx) => {
-            const isEven = idx % 2 === 0;
+          {projects.map((project, idx) => {
             return (
               <motion.div
-                key={project.id}
+                key={project.id || idx}
                 className="flex flex-col lg:flex-row items-center gap-10 md:gap-16 lg:flex-row"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -33,8 +37,9 @@ export default function Projects() {
                 {/* Left/Right: Beautiful Image Container */}
                 <div className="flex-1 w-full relative group">
                   <div 
+                    onClick={() => navigate(`/projects/${project.id}`)}
                     className="w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-lg border border-stone-200 flex items-center justify-center relative cursor-pointer"
-                    style={{ background: project.image }}
+                    style={getBackgroundImageStyle(project.image)}
                   >
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
                     
@@ -60,7 +65,10 @@ export default function Projects() {
                   </span>
                   
                   <div>
-                    <h2 className="text-3xl font-heading font-black tracking-tight text-black mb-2">
+                    <h2 
+                      onClick={() => navigate(`/projects/${project.id}`)}
+                      className="text-3xl font-heading font-black tracking-tight text-black mb-2 hover:text-stone-700 cursor-pointer transition-colors"
+                    >
                       {project.title}
                     </h2>
                     <p className="text-sm font-medium text-stone-500 italic">

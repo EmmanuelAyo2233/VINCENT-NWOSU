@@ -1,20 +1,24 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Search, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
-import { publicationsData } from '../data/mockData';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 export default function Publications() {
+  const { publications } = usePortfolioData();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
   const [expandedPub, setExpandedPub] = useState(null);
 
   // Extract years and categories
-  const categories = ['All', ...new Set(publicationsData.map(pub => pub.category))];
-  const years = ['All', ...new Set(publicationsData.map(pub => pub.year))].sort((a, b) => b - a);
+  const categories = ['All', ...new Set(publications.map(pub => pub.category))];
+  const years = ['All', ...new Set(publications.map(pub => pub.year))].sort((a, b) => {
+    if (isNaN(a) || isNaN(b)) return 0;
+    return Number(b) - Number(a);
+  });
 
   // Filter logic
-  const filteredPublications = publicationsData.filter((pub) => {
+  const filteredPublications = publications.filter((pub) => {
     const matchesSearch = pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           pub.authors.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           pub.abstract.toLowerCase().includes(searchQuery.toLowerCase());
@@ -139,14 +143,18 @@ export default function Publications() {
                       </div>
 
                       {/* Download PDF CTA */}
-                      <a
-                        href={pub.pdfLink}
-                        download="Vincent_Nwosu_CV.pdf"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-300 bg-white hover:bg-stone-950 hover:text-white text-stone-950 text-xs font-semibold tracking-wide transition-all shrink-0 cursor-pointer self-start sm:self-center shadow-xs"
-                      >
-                        <Download className="w-3.5 h-3.5" />
-                        PDF
-                      </a>
+                      {pub.pdfLink && (
+                        <a
+                          href={pub.pdfLink}
+                          download="Vincent_Nwosu_Publication.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-300 bg-white hover:bg-stone-950 hover:text-white text-stone-950 text-xs font-semibold tracking-wide transition-all shrink-0 cursor-pointer self-start sm:self-center shadow-xs"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          PDF
+                        </a>
+                      )}
                     </div>
 
                     {/* Collapsible Abstract */}
